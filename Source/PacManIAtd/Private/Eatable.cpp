@@ -3,6 +3,8 @@
 
 #include "Eatable.h"
 #include "Components/BoxComponent.h"
+#include "Kismet/GameplayStatics.h"
+
 // Sets default values
 AEatable::AEatable()
 {
@@ -34,5 +36,8 @@ void AEatable::OnEat() {
 
 }
 void AEatable::OnOverlap(AActor* MyActor, AActor* OtherActor) {
-	OnEat();
+	if (auto player = Cast<AAPacManPlayer>(OtherActor)) {
+		OnEat();
+		Destroy();
+	}
 }
