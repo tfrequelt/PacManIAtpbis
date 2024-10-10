@@ -2,7 +2,7 @@
 
 
 #include "PacGome.h"
-
+//doit augmenter le score de 10
 void APacGome::OnEat() {
 
 }

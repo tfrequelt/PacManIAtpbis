@@ -28,6 +28,6 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 	virtual void OnEat();
-	virtual void OnOverlap();
+	virtual void OnOverlap(AActor* MyActor, AActor* OtherActor);
 
 };

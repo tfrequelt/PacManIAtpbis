@@ -33,6 +33,6 @@ void AEatable::Tick(float DeltaTime)
 void AEatable::OnEat() {
 
 }
-void AEatable::OnOverlap() {
-
+void AEatable::OnOverlap(AActor* MyActor, AActor* OtherActor) {
+	OnEat();
 }
