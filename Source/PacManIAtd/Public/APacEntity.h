@@ -1,5 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
 #include "CoreMinimal.h"
@@ -23,7 +21,19 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	// Called to bind functionality to input
-	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+	// Static Mesh
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+	class UStaticMeshComponent* StaticMesh;
+
+	UPROPERTY(EditAnywhere)
+	class UBoxComponent* BoxCollision;
+
+	// Flipbook for animations
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Visual")
+	class UPaperFlipbookComponent* Flipbook;
+
+	// Movement component for pawn movement
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Movement")
+	class UPawnMovementComponent* PawnMovement;
 };
