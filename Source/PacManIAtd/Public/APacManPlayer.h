@@ -1,33 +1,49 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "APacEntity.h"
+#include "APacEntity.h" // Inclure la classe de base
 #include "APacManPlayer.generated.h"
 
+/**
+ * Classe représentant le joueur Pac-Man.
+ */
 UCLASS()
 class PACMANIATD_API AAPacManPlayer : public AAPacEntity
 {
-	GENERATED_BODY()
+    GENERATED_BODY()
 
 public:
-	// Sets default values for this pawn's properties
-	AAPacManPlayer();
+    // Constructeur par défaut
+    AAPacManPlayer();
 
 protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
+    // Appelé lorsque le jeu commence ou lorsque l'acteur est spawné
+    virtual void BeginPlay() override;
+
+
+    // Appelé à chaque frame
+    virtual void Tick(float DeltaTime) override;
 
 public:
-	// Score property
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Gameplay")
-	int32 Score;
 
-	// Setup player input
-	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+    // Configuration des entrées du joueur
+    virtual void SetupPlayerInputComponent(UInputComponent* PlayerInputComponent) override;
 
-	// Movement methods
-	void MoveUp(float Value);
-	void MoveDown(float Value);
-	void MoveLeft(float Value);
-	void MoveRight(float Value);
+public:
+    // Vitesse de déplacement de Pac-Man
+    UPROPERTY(EditAnywhere, Category = "Movement")
+    float MoveSpeed = 200.0f;
+
+    // Direction actuelle du mouvement
+    FVector CurrentDirection;
+
+    // Score du joueur
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Score")
+    int32 Score;
+
+    // Méthodes de mouvement
+    void MoveUp(float Value);
+    void MoveDown(float Value);
+    void MoveLeft(float Value);
+    void MoveRight(float Value);
 };
